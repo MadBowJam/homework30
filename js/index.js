@@ -15,6 +15,7 @@ const style = document.createElement('style');
 style.textContent = `
   body {
     font-family: Arial, sans-serif;
+    background-color: #f5f5f5;
     margin: 0;
     padding: 0;
   }
@@ -25,11 +26,13 @@ style.textContent = `
 
   .search-input {
     font-size: 1.5rem;
-    max-width: 1200px; /* Add max width */
-    width: 80%; /* Set width to 80% */
-    padding: 10px; /* Add padding for better visual appearance */
-    margin: 20px auto; /* Center the input horizontally and add some margin */
-    display: block; /* Make the input a block-level element */
+    max-width: 1200px;
+    width: 80%;
+    padding: 10px;
+    margin: 20px auto;
+    display: block;
+    border-radius: 10px;
+    outline-color: #cdcbcb;
   }
 
   .results {
@@ -43,17 +46,17 @@ style.textContent = `
 
   .movie {
     width: calc(20% - 10px);
-    margin-bottom: 20px; /* Add margin between movie items */
+    margin-bottom: 20px;
     border: 1px solid #ddd;
-    border-radius: 8px;
+    border-radius: 10px;
     overflow: hidden;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-    transition: all 0.3s ease; /* Add smooth transition effect */
-    margin-right: 10px; /* Add right margin for every fourth movie element */
+    transition: all 0.3s ease;
+    margin-right: 10px;
   }
 
   .movie:nth-child(5n) {
-    margin-right: 0; /* Remove right margin for every fifth movie element */
+    margin-right: 0;
   }
 
   @media (max-width: 1300px) {
@@ -120,18 +123,16 @@ style.textContent = `
   }
 
   .movieDescription h2 {
-    white-space: nowrap; /* Prevent text from wrapping */
-    overflow: hidden; /* Hide any overflow */
-    text-overflow: ellipsis; /* Add ellipsis (...) for overflow text */
-    margin: 0; /* Remove default margin */
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin: 0;
   }
 
-  /* Remove top margin from the first child of .movieDescription */
   .movieDescription > :first-child {
     margin-top: 0;
   }
 
-  /* Remove bottom margin from the last child of .movieDescription */
   .movieDescription > :last-child {
     margin-bottom: 0;
   }
@@ -146,7 +147,7 @@ style.textContent = `
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    transition: background-color 0.3s ease; /* Add transition for hover effect */
+    transition: background-color 0.3s ease;
   }
 
   .show-more-btn:hover {
