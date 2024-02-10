@@ -1,28 +1,13 @@
-// Create the search input element
-const searchInput = document.createElement('input');
-searchInput.type = 'text';
-searchInput.placeholder = 'Enter movie title...';
-searchInput.classList.add('search-input');
-
-// Create the results container
-const resultsDiv = document.createElement('div');
-resultsDiv.classList.add('results');
-
-// Create the "Show More" button
-const showMoreButton = document.createElement('button');
-showMoreButton.textContent = 'Show More';
-showMoreButton.style.display = 'none'; // Initially hidden
-showMoreButton.classList.add('show-more-btn');
-
-// Create the heading element
-const heading = document.createElement('h1');
-heading.textContent = 'Movie Search';
-heading.classList.add('heading');
+import { createSearchInput, createResultsContainer, createShowMoreButton, createHeading } from './dom.js';
+import { createMovieElement } from './movie.js';
 
 // Append the elements to the body of the document
-document.body.appendChild(heading);
+document.body.appendChild(createHeading());
+const searchInput = createSearchInput(); // Store the search input reference
 document.body.appendChild(searchInput);
+const resultsDiv = createResultsContainer();
 document.body.appendChild(resultsDiv);
+const showMoreButton = createShowMoreButton();
 document.body.appendChild(showMoreButton);
 
 // Dynamically generate CSS styles
@@ -73,7 +58,7 @@ style.textContent = `
 
   @media (max-width: 1300px) {
     .movie {
-      min-width: calc(25% - 10px); /* Add min width when viewport width is less than 1300px */
+      min-width: calc(25% - 10px);
     }
 
     .movie:nth-child(5n) {
@@ -87,7 +72,7 @@ style.textContent = `
 
   @media (max-width: 1000px) {
     .movie {
-      min-width: calc(33% - 7px); /* Add min width when viewport width is less than 1300px */
+      min-width: calc(33% - 7px);
     }
 
     .movie:nth-child(4n) {
@@ -101,7 +86,7 @@ style.textContent = `
 
   @media (max-width: 700px) {
     .movie {
-      min-width: calc(50% - 7px); /* Add min width when viewport width is less than 1300px */
+      min-width: calc(50% - 7px);
     }
 
     .movie:nth-child(2n) {
@@ -115,17 +100,13 @@ style.textContent = `
 
   @media (max-width: 500px) {
     .movie {
-      min-width: 100%; /* Add min width when viewport width is less than 1300px */
+      min-width: 100%;
+      margin: 0 0 10px 0 !important;
     }
 
     .movie img {
       height: unset !important;
     }
-
-    .movie {
-      margin: 0 0 10px 0 !important;
-    }
-
   }
 
   .movie img {
@@ -207,35 +188,6 @@ async function searchMovies() {
   }
 }
 
-
-const createMovieElement = (movie) => {
-  const movieDiv = document.createElement('div');
-  movieDiv.classList.add('movie');
-
-  const img = document.createElement('img');
-  img.src = movie.Poster !== 'N/A' ? movie.Poster : '../assets/img/noImg.svg';
-  img.alt = movie.Title;
-
-  const detailsDiv = document.createElement('div');
-  detailsDiv.classList.add('movieDescription');
-  const h2 = document.createElement('h2');
-  h2.textContent = movie.Title;
-  h2.setAttribute('title', movie.Title)
-  const yearPara = document.createElement('p');
-  yearPara.textContent = `Year: ${movie.Year}`;
-  const typePara = document.createElement('p');
-  typePara.textContent = `Type: ${movie.Type}`;
-
-  detailsDiv.appendChild(h2);
-  detailsDiv.appendChild(yearPara);
-  detailsDiv.appendChild(typePara);
-
-  movieDiv.appendChild(img);
-  movieDiv.appendChild(detailsDiv);
-
-  return movieDiv;
-};
-
 // Add event listener to "Show More" button
 showMoreButton.addEventListener('click', async () => {
   currentPage++;
@@ -264,11 +216,3 @@ function debounce(func, timeout) {
     }, timeout);
   };
 }
-
-
-
-
-
-
-// DOM.js
-// movies.js
